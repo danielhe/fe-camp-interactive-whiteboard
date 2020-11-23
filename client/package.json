@@ -1,0 +1,107 @@
+{
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not ie <= 11",
+      "not op_mini all",
+      "not safari < 12",
+      "not kaios <= 2.5",
+      "not edge < 79",
+      "not chrome < 70",
+      "not and_uc < 13",
+      "not samsung < 10"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "dependencies": {
+    "@sentry/browser": "5.27.2",
+    "@sentry/integrations": "5.27.2",
+    "@testing-library/jest-dom": "5.11.5",
+    "@testing-library/react": "11.1.0",
+    "@types/jest": "26.0.15",
+    "@types/nanoid": "2.1.0",
+    "@types/react": "16.9.55",
+    "@types/react-dom": "16.9.9",
+    "@types/socket.io-client": "1.4.34",
+    "antd": "4.8.2",
+    "browser-nativefs": "0.11.0",
+    "clsx": "1.1.1",
+    "eventemitter3": "4.0.7",
+    "firebase": "8.0.0",
+    "i18next-browser-languagedetector": "6.0.1",
+    "levenary": "1.1.1",
+    "lodash.throttle": "4.1.1",
+    "nanoid": "2.1.11",
+    "node-sass": "4.14.1",
+    "open-color": "1.7.0",
+    "pako": "1.0.11",
+    "peerjs": "1.3.1",
+    "png-chunk-text": "1.0.0",
+    "png-chunks-encode": "1.0.0",
+    "png-chunks-extract": "1.0.0",
+    "points-on-curve": "0.2.0",
+    "pwacompat": "2.0.17",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "react-draggable": "4.4.3",
+    "react-scripts": "4.0.0",
+    "react-toastify": "6.1.0",
+    "roughjs": "4.3.1",
+    "socket.io-client": "2.3.1",
+    "typescript": "4.0.5"
+  },
+  "devDependencies": {
+    "@types/lodash.throttle": "4.1.6",
+    "@types/pako": "1.0.1",
+    "asar": "3.0.3",
+    "eslint-config-prettier": "6.15.0",
+    "eslint-plugin-prettier": "3.1.4",
+    "firebase-tools": "8.14.1",
+    "husky": "4.3.0",
+    "jest-canvas-mock": "2.3.0",
+    "lint-staged": "10.5.1",
+    "pepjs": "0.5.2",
+    "prettier": "2.1.2",
+    "rewire": "5.0.0"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "homepage": ".",
+  "jest": {
+    "transformIgnorePatterns": [
+      "node_modules/(?!(roughjs|points-on-curve|path-data-parser|points-on-path|browser-nativefs)/)"
+    ],
+    "resetMocks": false
+  },
+  "name": "excalidraw",
+  "private": true,
+  "scripts": {
+    "build-node": "node ./scripts/build-node.js",
+    "build:app:docker": "REACT_APP_INCLUDE_GTAG=false REACT_APP_DISABLE_SENTRY=true react-scripts build",
+    "build:app": "REACT_APP_INCLUDE_GTAG=true REACT_APP_GIT_SHA=$NOW_GITHUB_COMMIT_SHA react-scripts build",
+    "build:zip": "node ./scripts/build-version.js",
+    "build": "npm run build:app && npm run build:zip",
+    "eject": "react-scripts eject",
+    "fix:code": "npm run test:code -- --fix",
+    "fix:other": "npm run prettier -- --write",
+    "fix": "npm run fix:other && npm run fix:code",
+    "locales-coverage": "node scripts/build-locales-coverage.js",
+    "prettier": "prettier \"**/*.{css,scss,json,md,html,yml}\" --ignore-path=.eslintignore",
+    "start": "PORT=3002 react-scripts start",
+    "starts": "HTTPS=true SSL_CRT_FILE=./cert/server.pem SSL_KEY_FILE=./cert/server.key npm start",
+    "test:all": "npm run test:typecheck && npm run test:code && npm run test:other && npm run test:app -- --watchAll=false",
+    "test:app": "react-scripts test --passWithNoTests",
+    "test:code": "eslint --max-warnings=0 --ignore-path .gitignore --ext .js,.ts,.tsx .",
+    "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
+    "test:other": "npm run prettier -- --list-different",
+    "test:typecheck": "tsc",
+    "test:update": "npm run test:app -- --updateSnapshot --watchAll=false",
+    "test": "npm run test:app"
+  }
+}

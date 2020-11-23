@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #draw-panel {
+        border: 1px solid #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Draw something</h2>
+    <canvas id="draw-panel"></canvas>
+    <script src="./matrix.js"></script>
+    <script src="./hitTest.js"></script>
+    <script src="./rectangle.js"></script>
+    <script src="./eventHandle.js"></script>
+    <script src="./globals.js"></script>
+  </body>
+  <script>
+    bindEvent();
+    const loop = () => {
+      if (needRefresh) {
+        ctx.clearRect(0, 0, width, height);
+        items.forEach((item) => item.draw(ctx));
+        needRefresh = false;
+      }
+      requestAnimationFrame(() => loop());
+    };
+    loop();
+  </script>
+</html>

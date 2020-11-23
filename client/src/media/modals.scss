@@ -1,0 +1,18 @@
+.excalidraw-modal {
+  .preview-video {
+    width: 100%;
+  }
+
+  .anticon-exclamation-circle {
+    display: none;
+  }
+
+  &.ant-modal-confirm {
+    .ant-modal-body {
+      padding: 12px 12px 12px;
+    }
+    .ant-modal-confirm-btns {
+      margin-top: 12px;
+    }
+  }
+}
